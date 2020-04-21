@@ -1,5 +1,6 @@
 class Owner
   attr_reader :name, :species
+  attr_accessor :pets
   
   @@all = []
   
@@ -7,6 +8,7 @@ class Owner
     @name = name
     @species = "human"
     @@all << self
+    @pets = {:dogs => [], :cats => []}
   end 
   
   def say_species
@@ -25,11 +27,36 @@ class Owner
     @@all = []
   end 
   
-  def cats (number)
-    @@all_cats [number]
+  def cats 
+    Cat.all.select {|cat| cat.owner == self}
   end 
   
-  def dogs (number)
+  def dogs 
+    Dog.all.select {|dog| dog.owner == self}
+  end 
+  
+  def buy_cat (name)
+    @pets[:cats] << Cat.new(name, self)
+  end 
+  
+  def buy_dog (name)
+    @pets[:dogs] << Dog.new(name, self)
+  end 
+  
+  def walk_dogs
+    @pets[:dogs].each do |dog|
+      Dog.dog.mood = "happy"
+    end 
+  end 
+  
+  def feed_cats
+  end 
+  
+  def sell_pets
+  end 
+  
+  def list_pets
+    return "I have #{@pets[:dogs].size} dog(s), and #{@pets[:cats].size} cat(s)."
   end 
   
 end
