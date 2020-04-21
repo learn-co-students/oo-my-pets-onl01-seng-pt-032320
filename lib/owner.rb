@@ -26,6 +26,7 @@ class Owner
   end 
   
   def cats (number)
+    @@all_cats [number]
   end 
   
   def dogs (number)
