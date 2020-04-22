@@ -1,3 +1,4 @@
+require 'pry'
 class Owner
   attr_reader :name, :species
   attr_accessor :pets
@@ -44,15 +45,36 @@ class Owner
   end 
   
   def walk_dogs
-    @pets[:dogs].each do |dog|
-      dog.mood = "happy"
+    #binding.pry
+    Dog.all.select do |dog| 
+      if (dog.owner == self)
+        dog.mood = "happy"
+      end 
     end 
   end 
   
   def feed_cats
+    Cat.all.select do |cat| 
+      if (cat.owner == self)
+        cat.mood = "happy"
+      end 
+    end 
   end 
   
   def sell_pets
+    Dog.all.select do |dog| 
+      if (dog.owner == self)
+        dog.mood = "nervous"
+        dog.owner = nil
+      end 
+    end
+    Cat.all.select do |cat| 
+      if (cat.owner == self)
+        cat.mood = "nervous"
+        cat.owner = nil
+      end 
+    end
+    @pets.clear
   end 
   
   def list_pets
