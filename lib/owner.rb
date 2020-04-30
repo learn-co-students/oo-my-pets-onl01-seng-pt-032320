@@ -40,6 +40,17 @@ class Owner
   end
   
   def walk_dogs
-    Dog.each {|dog| dog.mood = "happy"}
+    self.dogs.each {|name| name.mood = "happy"}
+  end
+  
+  def feed_cats
+    self.cats.each {|name| name.mood = "happy"}
+  end
+  
+  def sell_pets
+    self.cats.each {|name| name.owner = nil}
+    self.cats.each {|name| name.mood = "nervous"}
+    self.dogs.each {|name| name.owner = nil}
+    self.dogs.each {|name| name.mood = "nervous"}
   end
 end
